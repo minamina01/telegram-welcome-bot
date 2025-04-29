@@ -10,10 +10,15 @@ async def new_member(update: Update, context):
         reply_markup = InlineKeyboardMarkup(keyboard)
         await context.bot.send_message(
             chat_id=update.effective_chat.id,
-            text=f"👋 Chào {member.full_name}!\n\nVui lòng nhắn tin cho admin @{ADMIN_USERNAME} để được duyệt.\nSau đó bấm nút dưới đây để xác nhận.",
-\nVui lòng nhắn tin cho admin @{ADMIN_USERNAME} để được duyệt.\nSau đó bấm nút dưới đây để xác nhận.",
-            reply_markup=reply_markup
-        )
+            await context.bot.send_message(
+    chat_id=update.effective_chat.id,
+    text=(
+        f"👋 Chào {member.full_name}!\n\n"
+        f"Vui lòng nhắn tin cho admin @{ADMIN_USERNAME} để được duyệt.\n"
+        f"Sau đó bấm ✅ Tôi đã nhắn admin để xác nhận."
+    ),
+    reply_markup=reply_markup
+)
 
 application = ApplicationBuilder().token(BOT_TOKEN).build()
 application.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, new_member))
