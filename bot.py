@@ -2,7 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
 import os
 
-BOT_TOKEN = os.getenv("7191121453:AAGr1WuRjNcRdk1Gmtwsin2ybgEM6RqlP4E")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_USERNAME = "san280201"  # <-- Thay đổi nếu cần
 
 async def new_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -24,4 +24,5 @@ async def new_member(update: Update, context: ContextTypes.DEFAULT_TYPE):
 application = ApplicationBuilder().token(BOT_TOKEN).build()
 application.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, new_member))
 application.run_polling()
+
 
